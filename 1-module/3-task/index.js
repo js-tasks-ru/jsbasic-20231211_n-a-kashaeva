@@ -6,5 +6,4 @@ function ucFirst(str) {
   } else {
     return str;
   }
-
 }
