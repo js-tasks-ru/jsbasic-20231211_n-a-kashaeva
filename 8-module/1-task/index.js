@@ -34,20 +34,28 @@ export default class CartIcon {
   }
 
   addEventListeners() {
-    document.addEventListener('scroll', () => this.onScroll());
-    window.addEventListener('resize', () => this.onScroll());
+    document.addEventListener('scroll', this.onScroll);
+    window.addEventListener('resize', this.onScroll);
   }
 
-  onScroll() {
+  onScroll = () => { // Сделал стрелочным методом
+    if (!this.elem.offsetWidth || !this.elem.offsetHeight) {
+      return;
+    }
+
     if (!this.initialTopCoord) {
       this.initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
     }
+
     this.updatePosition();
   }
 
   updatePosition() {
     if (!this.elem.offsetWidth || !this.elem.offsetHeight) {
-      return;
+    }
+
+    if (!this.initialTopCoord) {
+      this.initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
     }
 
     if (document.documentElement.clientWidth <= 767) {
@@ -71,7 +79,6 @@ export default class CartIcon {
       position: 'fixed',
       top: '50px',
       zIndex: 1000,
-      right: '10px',
       left: leftIndent
     });
   }
