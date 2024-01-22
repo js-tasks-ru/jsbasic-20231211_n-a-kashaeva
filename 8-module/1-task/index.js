@@ -38,7 +38,7 @@ export default class CartIcon {
     window.addEventListener('resize', this.onScroll);
   }
 
-  onScroll = () => { // Сделал стрелочным методом
+  onScroll = () => { 
     if (!this.elem.offsetWidth || !this.elem.offsetHeight) {
       return;
     }
